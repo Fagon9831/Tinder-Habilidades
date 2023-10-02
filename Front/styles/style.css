@@ -321,7 +321,7 @@ span.principal {
   margin: 20px 10px 10px 10px;
   border: 2px solid rgb(44, 44, 105);
 }
-.section-chats {
+.section-chats, .section-contratosl {
   position: absolute;
   top: 145px;
   left: 136px;
@@ -331,7 +331,7 @@ span.principal {
   justify-content: center;
   align-items: flex-start;
 }
-.section-chats button {
+.section-chats button, .section-contratosl button {
   width: 100%;
   font-size: 16px;
   font-weight: 500;
@@ -343,7 +343,7 @@ span.principal {
   margin: 20px 10px 10px 10px;
   border: 2px solid rgb(100, 100, 104);
 }
-.section-chats button:hover {
+.section-chats button:hover, .section-contratosl button:hover {
   font-size: 16px;
   font-weight: 500;
   color: black;
@@ -354,7 +354,7 @@ span.principal {
   margin: 20px 10px 10px 10px;
   border: 2px solid rgb(200, 200, 211);
 }
-.section-contrato {
+.section-contrato, .section-contrato-p {
   width: 57%;
   position: absolute;
   top: 140px;

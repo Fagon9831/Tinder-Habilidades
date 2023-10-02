@@ -552,7 +552,7 @@ function iniciarSession() {
 
                     })
                     form.appendChild(sectionP)
-
+                    
                 })
                 sectionbuttons.appendChild(spanSearchA)
 
@@ -611,8 +611,8 @@ function iniciarSession() {
                             sectionC2.id = 'boxChat'
 
                             let spamtest = document.createElement('span')
-                            let text=item.message.split('/n').join('<br>')
-                            spamtest.innerHTML = `<p>${text} </p>`                            
+                            let text = item.message.split('/n').join('<br>')
+                            spamtest.innerHTML = `<p>${text} </p>`
                             spamtest.classList.add('section-message')
                             sectionC2.appendChild(spamtest)
 
@@ -622,7 +622,7 @@ function iniciarSession() {
                             sectionC2.appendChild(inputText)
 
                             let sectionC3 = document.createElement('section')
-                            sectionC3.classList.add('section-message__button')                            
+                            sectionC3.classList.add('section-message__button')
 
                             let inputBTN = document.createElement('button')
                             inputBTN.textContent = "Enviar nuevo mensaje"
@@ -637,7 +637,7 @@ function iniciarSession() {
                                     session_e: usuarioE,
                                     session_a: aspirante.session_code,
                                     fecha: date,
-                                }                
+                                }
                                 const response = await fetch(`http://localhost:3000/ModificarChats/${usuarioE}_${aspirante.session_code}`, {
                                     method: "POST",
                                     headers: {
@@ -650,10 +650,10 @@ function iniciarSession() {
                             let inputBTN2 = document.createElement('button')
                             inputBTN2.textContent = "Crear Contrato"
                             inputBTN2.id = 'btnInput2'
-                            inputBTN2.addEventListener("click", async () => {                                
-                                let sectionCont =document.createElement('section')
+                            inputBTN2.addEventListener("click", async () => {
+                                let sectionCont = document.createElement('section')
                                 sectionCont.classList.add('section-contrato')
-                                
+
                                 let principal = document.querySelector('.section-message')
                                 principal.innerHTML = ""
 
@@ -667,7 +667,7 @@ function iniciarSession() {
                                 const infoEmpresa = empresa[0]
                                 var now = new Date();
                                 let date = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds()
-                                let contratoElement = document.createElement('p');                                
+                                let contratoElement = document.createElement('p');
                                 contratoElement.innerHTML = `CONTRATO DE PRESTACIÓN DE SERVICIOS <br> ENTRE ${infoEmpresa.nombre}, con domicilio en ${infoEmpresa.direccion}, en adelante denominado "EL CONTRATANTE", por una parte, y ${aspirante.nombre} ${aspirante.apellido}, con domicilio en ${aspirante.direccion}, en adelante denominado "EL CONTRATISTA", por la otra parte,<br> ACUERDAN LO SIGUIENTE:<br> 1. OBJETO: EL CONTRATISTA se compromete a prestar sus servicios a EL CONTRATANTE, los cuales consistirán en <input type='text' id='funciones'> y se realizaran en la ubicacion <input type='text' id='ubicacion'>.<br> 2. DURACIÓN: Este contrato tendrá una duración de <input type='number' id='TiempoContrato'> horas, comenzando el <input type='datetime-local' id='fechaInicial'>.<br> 3. PAGO: Por los servicios prestados, EL CONTRATANTE pagará a EL CONTRATISTA la suma de $ ${aspirante.valor_hora} a pagar en efectivo o transferencia por cada hora laborada.<br> 4. CONFIDENCIALIDAD: EL CONTRATISTA se compromete a mantener en confidencialidad toda la información que reciba de EL CONTRATANTE durante la vigencia de este contrato.<br> 5. TERMINACIÓN: Cualquiera de las partes puede terminar este contrato con un preaviso por escrito de 7 dias.<br> Firmado en ${infoEmpresa.ciudad_id} el ${date},<br> Contratante: ${infoEmpresa.nombre}    Contratista: ${aspirante.nombre}`;
                                 sectionCont.appendChild(contratoElement)
 
@@ -689,7 +689,7 @@ function iniciarSession() {
                                         ciudad: infoEmpresa.ciudad_id,
                                         estado_code: 1,
                                         funciones: document.getElementById('funciones').value,
-                                    }                            
+                                    }
                                     const response = await fetch(`http://localhost:3000/CrearContrato/`, {
                                         method: "POST",
                                         headers: {
@@ -704,7 +704,7 @@ function iniciarSession() {
                             })
 
                             sectionC3.appendChild(inputBTN2)
-                            sectionC2.appendChild(sectionC3)                            
+                            sectionC2.appendChild(sectionC3)
                             sectionP.appendChild(sectionC2)
                             sectionP.appendChild(sectionS)
                         })
@@ -737,17 +737,17 @@ function iniciarSession() {
                     let cont = 0
                     let sectionP = document.createElement('section')
                     sectionP.classList.add('section-principal')
+                    let sectionContx = document.createElement('section')
+                    sectionContx.classList.add('section-contratosl')
                     for (let item of data) {
-
                         const response2 = await fetch(`http://localhost:3000/AspirantesID/${data[cont].session_a}`, {
                             method: "GET",
                             headers: {
                                 'Content-Type': 'application/json'
                             }
                         })
-                        const dataR = await response2.json()                        
+                        const dataR = await response2.json()
                         const aspirante = dataR[0]
-
                         let sectionC = document.createElement('section')
                         sectionC.classList.add('section-card')
                         sectionC.id = aspirante.session_code
@@ -756,6 +756,12 @@ function iniciarSession() {
                         nameAsp.classList.add("section-card__span")
                         nameAsp.textContent = aspirante.nombre + " " + aspirante.apellido
                         nameAsp.addEventListener("click", async () => {
+                            let sectionCont = document.createElement('section')
+                            sectionCont.classList.add('section-contrato-p')
+                            let sectionContedor = document.querySelector('.section-contrato-p');
+                            if (sectionContedor) {
+                                sectionContedor.remove();
+                            }
                             const respuesta = await fetch(`http://localhost:3000/ConsultarEmpresas/${usuarioE}`, {
                                 method: "GET",
                                 headers: {
@@ -766,32 +772,19 @@ function iniciarSession() {
                             const infoEmpresa = empresa[0]
                             var now = new Date();
                             let date = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds()
-                            let contratoElement = document.createElement('p');                            
-                            contratoElement.innerHTML = `CONTRATO DE PRESTACIÓN DE SERVICIOS\n
-                            ENTRE ${infoEmpresa.nombre}, con domicilio en ${infoEmpresa.direccion}, en adelante denominado "EL CONTRATANTE", por una parte,                            
-                            y ${aspirante.nombre} ${aspirante.apellido}, con domicilio en ${aspirante.direccion}, en adelante denominado "EL CONTRATISTA", por la otra parte,\n                            
-                            ACUERDAN LO SIGUIENTE:\n                            
-                            1. OBJETO: EL CONTRATISTA se compromete a prestar sus servicios a EL CONTRATANTE, los cuales consistirán en ${item.funciones} y se realizaran en la ubicacion ${item.ubicacion}.\n                            
-                            2. DURACIÓN: Este contrato tendrá una duración de ${item.tiempo}, comenzando el ${item.fecha_inicio}.\n                            
-                            3. PAGO: Por los servicios prestados, EL CONTRATANTE pagará a EL CONTRATISTA la suma de $ ${aspirante.valor_hora} a pagar en efectivo o transferencia por cada hora laborada.\n                            
-                            4. CONFIDENCIALIDAD: EL CONTRATISTA se compromete a mantener en confidencialidad toda la información que reciba de EL CONTRATANTE durante la vigencia de este contrato.\n                            
-                            5. TERMINACIÓN: Cualquiera de las partes puede terminar este contrato con un preaviso por escrito de 7 dias.\n                            
-                            Firmado en ${infoEmpresa.ciudad_id} el ${date},\n                                                        
-                            Contratante: ${infoEmpresa.nombre}    Contratista: ${aspirante.nombre}\n`;
-                            document.querySelector('.section-principal').appendChild(contratoElement)
-                            console.log(contratoElement)
+                            let contratoElement = document.createElement('p');
+                            contratoElement.innerHTML = `CONTRATO DE PRESTACIÓN DE SERVICIOS <br> ENTRE ${infoEmpresa.nombre}, con domicilio en ${infoEmpresa.direccion}, en adelante denominado "EL CONTRATANTE", por una parte, y ${aspirante.nombre} ${aspirante.apellido}, con domicilio en ${aspirante.direccion}, en adelante denominado "EL CONTRATISTA", por la otra parte,<br> ACUERDAN LO SIGUIENTE:<br> 1. OBJETO: EL CONTRATISTA se compromete a prestar sus servicios a EL CONTRATANTE, los cuales consistirán en ${item.funciones} y se realizaran en la ubicacion ${item.ubicacion}.<br> 2. DURACIÓN: Este contrato tendrá una duración de ${item.tiempo}, comenzando el ${item.fecha_inicio}.<br> 3. PAGO: Por los servicios prestados, EL CONTRATANTE pagará a EL CONTRATISTA la suma de $ ${aspirante.valor_hora} a pagar en efectivo o transferencia por cada hora laborada.<br> 4. CONFIDENCIALIDAD: EL CONTRATISTA se compromete a mantener en confidencialidad toda la información que reciba de EL CONTRATANTE durante la vigencia de este contrato.<br> 5. TERMINACIÓN: Cualquiera de las partes puede terminar este contrato con un preaviso por escrito de 7 dias. <br>Firmado en ${infoEmpresa.ciudad_id} el ${date},<br>Contratante: ${infoEmpresa.nombre}    Contratista: ${aspirante.nombre}<br>`;
+                            sectionCont.appendChild(contratoElement)
                             if (item.estado_code == 2) {
                                 let inputACT = document.createElement('button')
                                 inputACT.textContent = "Iniciar Contrato"
                                 inputACT.id = 'btnInputStart'
                                 inputACT.addEventListener("click", async () => {
-
                                     var infoSendC = {
                                         id: item.id_contrato,
                                         comentarioF: '',
                                         estado_code: 3
                                     }
-                                    console.log(infoSendC);
                                     const response = await fetch(`http://localhost:3000/ActualizarContrato/`, {
                                         method: "POST",
                                         headers: {
@@ -801,11 +794,11 @@ function iniciarSession() {
                                     })
 
                                 })
-                                document.querySelector('.section-principal').appendChild(inputACT)
+                                sectionCont.appendChild(inputACT)
                             } else if (item.estado_code == 3) {
                                 let inputComments = document.createElement('textarea')
                                 inputComments.id = 'iComments'
-                                document.querySelector('.section-principal').appendChild(inputComments)
+                                sectionCont.appendChild(inputComments)
 
                                 let inputACT = document.createElement('button')
                                 inputACT.textContent = "Finalizar Contrato"
@@ -817,7 +810,6 @@ function iniciarSession() {
                                         comentarioF: document.getElementById('iComments').value,
                                         estado_code: 4
                                     }
-                                    console.log(infoSendC);
                                     const response = await fetch(`http://localhost:3000/ActualizarContrato/`, {
                                         method: "POST",
                                         headers: {
@@ -827,16 +819,16 @@ function iniciarSession() {
                                     })
 
                                 })
-                                document.querySelector('.section-principal').appendChild(inputACT)
+                                sectionCont.appendChild(inputACT)
 
                             }
-
-
+                            sectionP.appendChild(sectionCont)
                         })
                         sectionC.appendChild(nameAsp)
 
                         cont++
-                        sectionP.appendChild(sectionC)
+                        sectionContx.appendChild(sectionC)
+                        sectionP.appendChild(sectionContx)
                     }
                     form.appendChild(sectionP)
                 })
@@ -847,6 +839,8 @@ function iniciarSession() {
 
             } else if (dataA.tipo_id == 1) {
                 usuarioE = dataA.code_session
+                let sectionbuttons = document.createElement('section')
+                sectionbuttons.classList.add('sectionbuttons')
                 let spanChatA = document.createElement('button')
                 spanChatA.textContent = "Chats"
                 spanChatA.addEventListener("click", async () => {
@@ -865,6 +859,9 @@ function iniciarSession() {
                     let cont = 0
                     let sectionP = document.createElement('section')
                     sectionP.classList.add('section-principal')
+
+                    let sectionS = document.createElement('section')
+                    sectionS.classList.add('section-chats')
                     for (let item of data) {
                         console.log(data[cont].sesion_e)
                         const response2 = await fetch(`http://localhost:3000/ConsultarEmpresas/${data[cont].sesion_e}`, {
@@ -897,8 +894,8 @@ function iniciarSession() {
                             sectionC2.id = 'boxChat'
 
                             let spamtest = document.createElement('span')
-                            let text=item.message.split('/n').join('<br>')
-                            spamtest.innerHTML = `<p>${text} </p>`                                                                
+                            let text = item.message.split('/n').join('<br>')
+                            spamtest.innerHTML = `<p>${text} </p>`
                             spamtest.classList.add('section-message')
                             sectionC2.appendChild(spamtest)
 
@@ -935,12 +932,13 @@ function iniciarSession() {
                         })
                         sectionC.appendChild(nameAsp)
                         cont++
-                        sectionP.appendChild(sectionC)
+                        sectionS.appendChild(sectionC)
+                        sectionP.appendChild(sectionS)
                     }
                     form.appendChild(sectionP)
                 })
                 spanChatA.classList.add("section-options__form")
-                form.appendChild(spanChatA)
+                sectionbuttons.appendChild(spanChatA)
 
                 let spanContratosA = document.createElement('button')
                 spanContratosA.textContent = "Contratos"
@@ -963,6 +961,8 @@ function iniciarSession() {
                     let cont = 0
                     let sectionP = document.createElement('section')
                     sectionP.classList.add('section-principal')
+                    let sectionContx = document.createElement('section')
+                    sectionContx.classList.add('section-contratosl')
                     for (let item of data) {
 
                         const response2 = await fetch(`http://localhost:3000/ConsultarEmpresas/${data[cont].session_e}`, {
@@ -982,6 +982,8 @@ function iniciarSession() {
                         nameAsp.classList.add("section-card__span")
                         nameAsp.textContent = empresa.nombre
                         nameAsp.addEventListener("click", async () => {
+                            let sectionCont = document.createElement('section')
+                            sectionCont.classList.add('section-contrato-p')
                             const respuestaA = await fetch(`http://localhost:3000/AspirantesID/${usuarioE}`, {
                                 method: "GET",
                                 headers: {
@@ -992,19 +994,9 @@ function iniciarSession() {
                             const aspirante = aspirantes[0]
                             var now = new Date();
                             let date = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds()
-                            let contratoElement = document.createElement('p');                                                        
-                            contratoElement.innerHTML = `CONTRATO DE PRESTACIÓN DE SERVICIOS\n
-                            ENTRE ${empresa.nombre}, con domicilio en ${empresa.direccion}, en adelante denominado "EL CONTRATANTE", por una parte,                            
-                            y ${aspirante.nombre} ${aspirante.apellido}, con domicilio en ${aspirante.direccion}, en adelante denominado "EL CONTRATISTA", por la otra parte,\n                            
-                            ACUERDAN LO SIGUIENTE:\n                            
-                            1. OBJETO: EL CONTRATISTA se compromete a prestar sus servicios a EL CONTRATANTE, los cuales consistirán en ${item.funciones} y se realizaran en la ubicacion ${item.ubicacion}.\n                            
-                            2. DURACIÓN: Este contrato tendrá una duración de ${item.tiempo}, comenzando el ${item.fecha_inicio}.\n                            
-                            3. PAGO: Por los servicios prestados, EL CONTRATANTE pagará a EL CONTRATISTA la suma de $ ${aspirante.valor_hora} a pagar en efectivo o transferencia por cada hora laborada.\n                            
-                            4. CONFIDENCIALIDAD: EL CONTRATISTA se compromete a mantener en confidencialidad toda la información que reciba de EL CONTRATANTE durante la vigencia de este contrato.\n                            
-                            5. TERMINACIÓN: Cualquiera de las partes puede terminar este contrato con un preaviso por escrito de 7 dias.\n                            
-                            Firmado en ${empresa.ciudad_id} el ${date},\n                                                        
-                            Contratante: ${empresa.nombre}    Contratista: ${aspirante.nombre}\n`;
-                            document.querySelector('.section-principal').appendChild(contratoElement)
+                            let contratoElement = document.createElement('p');
+                            contratoElement.innerHTML = `CONTRATO DE PRESTACIÓN DE SERVICIOS<br> ENTRE ${empresa.nombre}, con domicilio en ${empresa.direccion}, en adelante denominado "EL CONTRATANTE", por una parte,y ${aspirante.nombre} ${aspirante.apellido}, con domicilio en ${aspirante.direccion}, en adelante denominado "EL CONTRATISTA", por la otra parte,<br> ACUERDAN LO SIGUIENTE:<br> 1. OBJETO: EL CONTRATISTA se compromete a prestar sus servicios a EL CONTRATANTE, los cuales consistirán en ${item.funciones} y se realizaran en la ubicacion ${item.ubicacion}.<br> 2. DURACIÓN: Este contrato tendrá una duración de ${item.tiempo}, comenzando el ${item.fecha_inicio}.<br> 3. PAGO: Por los servicios prestados, EL CONTRATANTE pagará a EL CONTRATISTA la suma de $ ${aspirante.valor_hora} a pagar en efectivo o transferencia por cada hora laborada.<br> 4. CONFIDENCIALIDAD: EL CONTRATISTA se compromete a mantener en confidencialidad toda la información que reciba de EL CONTRATANTE durante la vigencia de este contrato.<br> 5. TERMINACIÓN: Cualquiera de las partes puede terminar este contrato con un preaviso por escrito de 7 dias.<br> Firmado en ${empresa.ciudad_id} el ${date},<br> Contratante: ${empresa.nombre}    Contratista: ${aspirante.nombre}<br>`;
+                            sectionCont.appendChild(contratoElement)                                                      
                             let inputACT = document.createElement('button')
                             inputACT.textContent = "Aprobar Contrato"
                             inputACT.id = 'btnInputAC'
@@ -1025,17 +1017,22 @@ function iniciarSession() {
                                 })
 
                             })
-                            document.querySelector('.section-principal').appendChild(inputACT)
+                            sectionCont.appendChild(inputACT)
+                            
+                            sectionP.appendChild(sectionCont)
+                            
 
                         })
                         sectionC.appendChild(nameAsp)
 
                         cont++
-                        sectionP.appendChild(sectionC)
+                        sectionContx.appendChild(sectionC)
+                        sectionP.appendChild(sectionContx)
                     }
                     form.appendChild(sectionP)
                 })
-                form.appendChild(spanContratosA)
+                sectionbuttons.appendChild(spanContratosA)
+                form.appendChild(sectionbuttons)
             }
 
         } else {
