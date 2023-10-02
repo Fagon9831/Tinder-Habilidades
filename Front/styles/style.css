@@ -1,0 +1,362 @@
+body {
+  background-image: url("../images/Fondo1.JPG");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+main {
+  width: 80vw;
+  min-height: 100vh;
+  border-radius: 25px;
+  background-color: rgba(153, 151, 151, 0.726);
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 10px 5px #bebebe;
+}
+
+span.principal {
+  display: block;
+  width: 100%;
+  font-size: 25px;
+  font-weight: 500;
+  color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 0px;
+  background-color: transparent;
+  padding: 10px;
+  margin: 50px 5px 5px 5px;
+  border: none;
+  text-align: center;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.section-options {
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.section-options .button1 {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+.section-options .button1 button {
+  width: 35%;
+  font-size: 25px;
+  font-weight: 400;
+  color: white;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 10px;
+  background-color: rgb(19, 19, 112);
+  padding: 10px;
+  margin: 50px 10px 10px 40px;
+  border: 2px solid rgb(3, 3, 83);
+}
+.section-options .button1 button:hover {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: rgb(3, 3, 83);
+  padding: 10px;
+  margin: 50px 10px 10px 40px;
+  border: 2px solid rgb(44, 44, 105);
+}
+.section-option-p {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 400;
+  color: white;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  width: 50vw;
+}
+.section-option-p__button {
+  width: 80%;
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 10px;
+  background-color: rgb(19, 19, 112);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(3, 3, 83);
+}
+.section-option-p__button:hover {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: rgb(3, 3, 83);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(44, 44, 105);
+}
+.section-results {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 82px;
+  width: 80vw;
+  flex-wrap: wrap;
+}
+.section-results input,
+.section-results select {
+  border-radius: 5px;
+  background-color: rgba(209, 203, 203, 0.671);
+  padding: 2px;
+  margin: 3px;
+  border: 1px solid darkblue;
+}
+.section-results button {
+  width: 35%;
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 10px;
+  background-color: rgb(27, 134, 81);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(9, 56, 32);
+}
+.section-results button:hover {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: rgb(9, 56, 32);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(27, 134, 81);
+}
+.section-results__form {
+  width: 35%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.section-results__form-tittle {
+  width: 100%;
+  font-size: 25px;
+  font-weight: 500;
+  color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 0px;
+  background-color: transparent;
+  padding: 2px;
+  margin: 5px;
+  border: none;
+  text-align: center;
+}
+.section-results .form_login {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.section-results .form_login button {
+  width: 35%;
+  border-radius: 10px;
+  background-color: rgb(19, 19, 112);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(3, 3, 83);
+}
+.section-results .form_login button:hover {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: rgb(3, 3, 83);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(44, 44, 105);
+}
+.sectionbuttons {
+  width: 81%;
+  top: 10px;
+  position: absolute;
+  border-radius: 0px;
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px 0px 20px 0px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.sectionbuttons button {
+  width: 30%;
+  border-radius: 10px;
+  background-color: rgb(19, 19, 112);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(3, 3, 83);
+}
+.sectionbuttons button:hover {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: rgb(3, 3, 83);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(44, 44, 105);
+}
+.section-card {
+  width: 260px;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.section-card img {
+  height: 180px;
+  width: 180px;
+}
+.section-card__button-c {
+  width: auto;
+  height: auto;
+  border-radius: 10px !important;
+  background-color: rgb(27, 134, 81) !important;
+  padding: 10px !important;
+  margin: 10px !important;
+  border: 2px solid rgb(9, 56, 32) !important;
+}
+.section-card__button-c:hover {
+  border-radius: 10px !important;
+  background-color: rgb(9, 56, 32) !important;
+  padding: 10px !important;
+  margin: 10px !important;
+  border: 2px solid rgb(27, 134, 81) !important;
+}
+.section-card__button-r {
+  width: auto;
+  height: auto;
+  border-radius: 10px !important;
+  background-color: red !important;
+  padding: 10px !important;
+  margin: 10px !important;
+  border: 2px solid rgb(136, 8, 8) !important;
+}
+.section-card__button-r:hover {
+  cursor: pointer;
+  border-radius: 10px !important;
+  background-color: rgb(102, 7, 7) !important;
+  padding: 10px !important;
+  margin: 10px !important;
+  border: 2px solid red !important;
+}
+.section-principal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.section-message {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 16px;
+  font-weight: 400;
+  color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.section-message textarea {
+  width: 72%;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 10px;
+  background-color: rgb(200, 200, 211);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(100, 100, 104);
+}
+.section-message__button {
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.section-message__button #btnInput2 {
+  border-radius: 10px;
+  background-color: rgb(19, 19, 112);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(3, 3, 83);
+}
+.section-message__button #btnInput2:hover {
+  border-radius: 10px;
+  background-color: rgb(3, 3, 83);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(44, 44, 105);
+}
+.section-chats {
+  position: absolute;
+  top: 145px;
+  left: 136px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.section-chats button {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 10px;
+  background-color: rgb(200, 200, 211);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(100, 100, 104);
+}
+.section-chats button:hover {
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 10px;
+  background-color: rgb(131, 131, 136);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(200, 200, 211);
+}
+.section-contrato {
+  width: 57%;
+  position: absolute;
+  top: 140px;
+  right: 145px;
+}/*# sourceMappingURL=style.css.map */

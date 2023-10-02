@@ -1,0 +1,27 @@
+const { Router } = require('express')
+const router = Router()
+const {holaMundo,ConsultCities,CreateCities,ConsultaDocumentos,ConsultaHabilidades,CrearAspirante,CrearEmpresa,iniciarSession,ConsulAspirantes,CreateMessage,searchUser,ConsultarChats,ModificarChats,ConsulAspirantesID,ConsultarEmpresa,CreateContrato,ConsultarContratos,UpdateContrato}=require('../controllers/controller')
+
+router.get('/', holaMundo)
+router.get('/Ciudades', ConsultCities)
+router.get('/Documentos', ConsultaDocumentos)
+router.post('/CrearCiudades', CreateCities)
+router.get('/Habilidades', ConsultaHabilidades)
+router.post('/CrearAspirante', CrearAspirante)
+router.post('/CrearEmpresa', CrearEmpresa)
+router.get('/IniciarSession/:user', iniciarSession)
+router.get('/Aspirantes/', ConsulAspirantes)
+router.get('/AspirantesID/:id', ConsulAspirantesID)
+router.post('/Chats/', CreateMessage)
+router.get('/CargarUsuario/:user', searchUser)
+router.get('/ConsultarChats/:id', ConsultarChats)
+router.get('/ConsultarEmpresas/:id', ConsultarEmpresa)
+router.post('/ModificarChats/:id',ModificarChats )
+router.post('/CrearContrato/',CreateContrato )
+router.get('/ConsultarContratos/:id',ConsultarContratos )
+router.post('/ActualizarContrato/',UpdateContrato )
+
+//router.delete('/clientes/:id', borrarCliente)
+//router.put('/clientes/:id', actualizarCliente)
+
+module.exports = router 

@@ -1,0 +1,257 @@
+@mixin flexible($dis , $direction , $just , $align ) {
+    display: $dis;
+    flex-direction: $direction;
+    justify-content: $just;
+    align-items: $align;
+}
+
+@mixin fuentes($size , $weight , $color) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color ;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+@mixin buttons($radius, $color, $padding, $margin, $border) {
+    border-radius: $radius;
+    background-color: $color;
+    padding: $padding;
+    margin: $margin;
+    border: $border;
+}
+
+@mixin responsive($medida : 510px) {
+    @media screen and (max-width: $medida ) {
+        @content;
+    }
+}
+
+body {
+    background-image: url("../images/Fondo1.JPG");
+    //background-repeat: no-repeat;
+    background-size: cover;
+    @include flexible(flex, column, flex-start, center);
+}
+
+main {
+    width: 80vw;
+    min-height: 100vh;
+    @include buttons(25px, rgba(153, 151, 151, 0.726), 5px, 5px, 1px solid white);
+    @include flexible(flex, column, center, center);
+    box-shadow: 1px 1px 10px 5px#bebebe;
+
+}
+
+span.principal {
+    display: block;
+    width: 100%;
+    @include fuentes(25px, 500, black);
+    @include buttons(0px, transparent, 10px, 50px 5px 5px 5px, none);
+    text-align: center;
+}
+
+.section {
+    @include flexible(flex, row, center, center);
+
+    &-options {
+        width: 70vw;
+        @include flexible(flex, column, center, center);
+
+        .button1 {
+            width: 70%;
+            @include flexible(flex, row, center, flex-start);
+        }
+
+        .button1 button {
+            width: 35%;
+            @include fuentes(25px, 400, white);
+            @include buttons(10px, rgb(19, 19, 112), 10px, 50px 10px 10px 40px, 2px solid rgb(3, 3, 83));
+        }
+
+        .button1 button:hover {
+            cursor: pointer;
+            @include buttons(10px, rgb(3, 3, 83), 10px, 50px 10px 10px 40px, 2px solid rgb(44, 44, 105));
+        }
+    }
+
+    &-option-p {
+        @include flexible(flex, row, center, center);
+        @include fuentes(25px, 400, white);
+        width: 50vw;
+
+        &__button {
+            width: 80%;
+            @include fuentes(16px, 400, white);
+            @include buttons(10px, rgb(19, 19, 112), 10px, 20px 10px 10px 10px, 2px solid rgb(3, 3, 83));
+        }
+
+        &__button:hover {
+            cursor: pointer;
+            @include buttons(10px, rgb(3, 3, 83), 10px, 20px 10px 10px 10px, 2px solid rgb(44, 44, 105));
+        }
+    }
+
+    &-results {
+        @include flexible(flex, row, center, flex-start);
+        margin-top: 82px;
+        width: 80vw;
+        flex-wrap: wrap;
+
+        input,
+        select {
+            @include buttons(5px, rgba(209, 203, 203, 0.671), 2px, 3px, 1px solid darkblue);
+        }
+
+        button {
+            width: 35%;
+            @include fuentes(16px, 400, white);
+            @include buttons(10px, rgb(27, 134, 81), 10px, 20px 10px 10px 10px, 2px solid rgb(9, 56, 32));
+        }
+
+        button:hover {
+            cursor: pointer;
+            @include buttons(10px, rgb(9, 56, 32), 10px, 20px 10px 10px 10px, 2px solid rgb(27, 134, 81));
+        }
+
+        &__form {
+            width: 35%;
+            @include flexible(flex, row, center, center);
+            @include fuentes(16px, 400, black);
+
+            &-tittle {
+                width: 100%;
+                @include fuentes(25px, 500, black);
+                @include buttons(0px, transparent, 2px, 5px, none);
+                text-align: center;
+            }
+
+        }
+
+        .form_login {
+            width: 60%;
+            height: 100%;
+            @include flexible(flex, column, center, center);
+
+            button {
+                width: 35%;
+                @include buttons(10px, rgb(19, 19, 112), 10px, 20px 10px 10px 10px, 2px solid rgb(3, 3, 83));
+            }
+
+            button:hover {
+                cursor: pointer;
+                @include buttons(10px, rgb(3, 3, 83), 10px, 20px 10px 10px 10px, 2px solid rgb(44, 44, 105));
+            }
+        }
+
+
+    }
+
+    &buttons {
+        width: 81%;
+        top: 10px;
+        position: absolute;
+        @include buttons(0px, transparent, 0px, 0px 0px 20px 0px, none);
+        @include flexible(flex, row, center, center);
+
+        button {
+            width: 30%;
+            @include buttons(10px, rgb(19, 19, 112), 10px, 20px 10px 10px 10px, 2px solid rgb(3, 3, 83));
+        }
+
+        button:hover {
+            cursor: pointer;
+            @include buttons(10px, rgb(3, 3, 83), 10px, 20px 10px 10px 10px, 2px solid rgb(44, 44, 105));
+        }
+    }
+
+    &-card {
+        width: 260px;
+        flex-wrap: wrap;
+        @include flexible(flex, row, flex-start, center);
+
+        img {
+            height: 180px;
+            width: 180px;
+        }
+
+        &__button {
+            &-c {
+                width: auto;
+                height: auto;
+                @include buttons(10px !important, rgb(27, 134, 81) !important, 10px !important, 10px !important, 2px solid rgb(9, 56, 32) !important);
+            }
+
+            &-c:hover {
+                @include buttons(10px !important, rgb(9, 56, 32) !important, 10px !important, 10px !important, 2px solid rgb(27, 134, 81) !important);
+            }
+
+            &-r {
+                width: auto;
+                height: auto;
+                @include buttons(10px !important, red !important, 10px !important, 10px !important, 2px solid rgb(136, 8, 8) !important);
+            }
+
+            &-r:hover {
+                cursor: pointer;
+                @include buttons(10px !important, rgb(102, 7, 7) !important, 10px !important, 10px !important, 2px solid red !important);
+            }
+        }
+    }
+
+    &-principal {
+        @include flexible(flex, row, center, flex-start);
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    &-message {
+        width: 75%;
+        @include flexible(flex, column, center, flex-end);
+        @include fuentes(16px, 400, black);
+
+        textarea {
+            width: 72%;
+            height: 40px;
+            @include fuentes(16px, 400, black);
+            @include buttons(10px, rgb(200, 200, 211), 10px, 20px 10px 10px 10px, 2px solid rgb(100, 100, 104));
+        }
+
+        &__button {
+            width: 75%;
+            @include flexible(flex, row, flex-end, center);
+
+            #btnInput2 {
+                @include buttons(10px, rgb(19, 19, 112), 10px, 20px 10px 10px 10px, 2px solid rgb(3, 3, 83));
+            }
+
+            #btnInput2:hover {
+                @include buttons(10px, rgb(3, 3, 83), 10px, 20px 10px 10px 10px, 2px solid rgb(44, 44, 105));
+            }
+        }
+    }
+
+    &-chats {
+        position: absolute;
+        top: 145px;
+        left: 136px;
+        width: 30%;
+        @include flexible(flex, column, center, flex-start);
+
+        button {
+            width: 100%;
+            @include fuentes(16px, 500, black);
+            @include buttons(10px, rgb(200, 200, 211), 10px, 20px 10px 10px 10px, 2px solid rgb(100, 100, 104));
+        }
+
+        button:hover {
+            @include fuentes(16px, 500, black);
+            @include buttons(10px, rgb(131, 131, 136), 10px, 20px 10px 10px 10px, 2px solid rgb(200, 200, 211));
+        }
+    }
+    &-contrato{
+        width: 57%;
+        position: absolute;
+        top: 140px;
+        right: 145px;
+    }
+}
