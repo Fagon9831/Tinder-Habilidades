@@ -359,4 +359,15 @@ span.principal {
   position: absolute;
   top: 140px;
   right: 145px;
+}
+.section-contrato p, .section-contrato-p p {
+  font-size: 16px;
+  font-weight: 400;
+  color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 10px;
+  background-color: rgba(173, 173, 173, 0.651);
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+  border: 2px solid rgb(200, 200, 211);
 }/*# sourceMappingURL=style.css.map */

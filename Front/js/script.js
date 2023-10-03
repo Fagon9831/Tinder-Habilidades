@@ -473,6 +473,14 @@ function iniciarSession() {
                     let cont = 0
                     let sectionP = document.createElement('section')
                     sectionP.classList.add('section-principal')
+                    const responseH = await fetch('http://localhost:3000/Habilidades')
+                    const resultH = await responseH.json()
+                    let matriz = resultH.map(item => [item.id_habilidad, item.habilidad]);
+
+                    const responseC = await fetch('http://localhost:3000/Ciudades')
+                    const resultC = await responseC.json()
+                    let matrizC = resultC.map(item => [item.id, item.ciudad]);
+                    //console.log(matrizC)
                     data.forEach(() => {
                         let sectionC = document.createElement('section')
                         sectionC.classList.add('section-card')
@@ -482,13 +490,19 @@ function iniciarSession() {
                         img.classList.add("section-card__img")
                         img.setAttribute("src", `../Front/images/${cont + 1}.jpg`)
                         sectionC.appendChild(img)
+                        let h1=data[cont].habilidad1_id
+                        let h2=data[cont].habilidad2_id
+                        let h3=data[cont].habilidad3_id
+                        let h4=data[cont].habilidad4_id
+                        let h5=data[cont].habilidad5_id
+                        let c1=data[cont].ciudad_id
                         let textBox = document.createElement('p')
                         textBox.classList.add("section-card__txt")
-                        textBox.innerHTML = `<span>Nombre: ${data[cont].nombre} Apellido: ${data[cont].apellido}</span>
-                        <span>Telefono: ${data[cont].telefono} Ciudad: ${data[cont].ciudad} Carrera: ${data[cont].carrera}</span>                     
-                        <span>Habilidades:${data[cont].habilidad1_id}, ${data[cont].habilidad2_id}, ${data[cont].habilidad3_id}, ${data[cont].habilidad4_id}, ${data[cont].habilidad5_id}. </span>`
+                        textBox.innerHTML = `<span>Nombre: ${data[cont].nombre}  <br>Apellido: ${data[cont].apellido}</span>
+                        <br><span>Telefono: ${data[cont].telefono} Ciudad: ${matrizC[c1-1][1]} <br>Carrera: ${data[cont].carrera}</span>                     
+                        <br><span>Habilidades: ${matriz[h1-1][1]}, ${matriz[h2-1][1]}, ${matriz[h3-1][1]}, ${matriz[h4-1][1]}, ${matriz[h5-1][1]}. </span>`
                         sectionC.appendChild(textBox)
-                        //console.log(data[cont].nombre)
+                        
                         let buttonOK = document.createElement('button');
                         buttonOK.textContent = "✔"
                         buttonOK.classList.add("section-card__button-c");
@@ -527,7 +541,7 @@ function iniciarSession() {
                                 session_a: aplicante.session_code,
                                 fecha: date,
                             }
-                            console.log(infoSend);
+                            //console.log(infoSend);
                             const response = await fetch('http://localhost:3000/Chats/', {
                                 method: "POST",
                                 headers: {
@@ -535,6 +549,11 @@ function iniciarSession() {
                                 },
                                 body: JSON.stringify(infoSend)
                             })
+                            if (!response.ok) {
+                                alert(`No se logro enviar el mensaje de Interes por el aplicante: ${response.status}`);
+                            } else {
+                                alert('Se envio el  mensaje al aplicante, podra continuar esta conversacion por la pestaña chats');
+                            }
                         })
                         sectionC.appendChild(buttonOK)
                         let buttonREC = document.createElement('button');
@@ -645,6 +664,11 @@ function iniciarSession() {
                                     },
                                     body: JSON.stringify(infoSend)
                                 })
+                                if (!response.ok) {
+                                    alert(`No se logro enviar el mensaje al aplicante: ${response.status}`);
+                                } else {
+                                    alert('Se envio el  mensaje al aplicante');
+                                }
                             })
                             sectionC3.appendChild(inputBTN)
                             let inputBTN2 = document.createElement('button')
@@ -697,7 +721,11 @@ function iniciarSession() {
                                         },
                                         body: JSON.stringify(infoSend)
                                     })
-
+                                    if (!response.ok) {
+                                        alert(`No se logro crear el contrato: ${response.status}`);
+                                    } else {
+                                        alert('Se Creo el borrador del contrato, podra validarlo en la pestaña contratos');
+                                    }
                                 })
                                 sectionCont.appendChild(inputBTN3)
                                 principal.appendChild(sectionCont)
@@ -775,7 +803,12 @@ function iniciarSession() {
                             let contratoElement = document.createElement('p');
                             contratoElement.innerHTML = `CONTRATO DE PRESTACIÓN DE SERVICIOS <br> ENTRE ${infoEmpresa.nombre}, con domicilio en ${infoEmpresa.direccion}, en adelante denominado "EL CONTRATANTE", por una parte, y ${aspirante.nombre} ${aspirante.apellido}, con domicilio en ${aspirante.direccion}, en adelante denominado "EL CONTRATISTA", por la otra parte,<br> ACUERDAN LO SIGUIENTE:<br> 1. OBJETO: EL CONTRATISTA se compromete a prestar sus servicios a EL CONTRATANTE, los cuales consistirán en ${item.funciones} y se realizaran en la ubicacion ${item.ubicacion}.<br> 2. DURACIÓN: Este contrato tendrá una duración de ${item.tiempo}, comenzando el ${item.fecha_inicio}.<br> 3. PAGO: Por los servicios prestados, EL CONTRATANTE pagará a EL CONTRATISTA la suma de $ ${aspirante.valor_hora} a pagar en efectivo o transferencia por cada hora laborada.<br> 4. CONFIDENCIALIDAD: EL CONTRATISTA se compromete a mantener en confidencialidad toda la información que reciba de EL CONTRATANTE durante la vigencia de este contrato.<br> 5. TERMINACIÓN: Cualquiera de las partes puede terminar este contrato con un preaviso por escrito de 7 dias. <br>Firmado en ${infoEmpresa.ciudad_id} el ${date},<br>Contratante: ${infoEmpresa.nombre}    Contratista: ${aspirante.nombre}<br>`;
                             sectionCont.appendChild(contratoElement)
-                            if (item.estado_code == 2) {
+                         if(item.estado_code == 1){   
+                            let inputACT = document.createElement('button')
+                                inputACT.textContent = "Contrato pendiente por aprobacion"                                
+                                inputACT.setAttribute('disabled', 'true')
+                                sectionCont.appendChild(inputACT)
+                        }else if (item.estado_code == 2) {
                                 let inputACT = document.createElement('button')
                                 inputACT.textContent = "Iniciar Contrato"
                                 inputACT.id = 'btnInputStart'
@@ -792,6 +825,11 @@ function iniciarSession() {
                                         },
                                         body: JSON.stringify(infoSendC)
                                     })
+                                    if (!response.ok) {
+                                        alert(`No se logro iniciar el contrato: ${response.status}`);
+                                    } else {
+                                        alert('Se ha iniciado el contrato, podra validarlo en la pestaña contratos');
+                                    }
 
                                 })
                                 sectionCont.appendChild(inputACT)
@@ -817,6 +855,11 @@ function iniciarSession() {
                                         },
                                         body: JSON.stringify(infoSendC)
                                     })
+                                    if (!response.ok) {
+                                        alert(`No se logro finalizar el contrato: ${response.status}`);
+                                    } else {
+                                        alert('Se ha finalizado el contrato, podra validarlo en la pestaña contratos');
+                                    }
 
                                 })
                                 sectionCont.appendChild(inputACT)
@@ -926,6 +969,11 @@ function iniciarSession() {
                                     },
                                     body: JSON.stringify(infoSend)
                                 })
+                                if (!response.ok) {
+                                    alert(`No se ha podido enviar el mensaje a la empresa: ${response.status}`);
+                                } else {
+                                    alert('Se ha enviado el mensaje a la empresa, podra validarlo en la pestaña mensajes');
+                                }
                             })
                             sectionC2.appendChild(inputBTN)
                             sectionP.appendChild(sectionC2)
@@ -984,6 +1032,10 @@ function iniciarSession() {
                         nameAsp.addEventListener("click", async () => {
                             let sectionCont = document.createElement('section')
                             sectionCont.classList.add('section-contrato-p')
+                            let sectionContedor = document.querySelector('.section-contrato-p');
+                            if (sectionContedor) {
+                                sectionContedor.remove();
+                            }
                             const respuestaA = await fetch(`http://localhost:3000/AspirantesID/${usuarioE}`, {
                                 method: "GET",
                                 headers: {
@@ -997,6 +1049,7 @@ function iniciarSession() {
                             let contratoElement = document.createElement('p');
                             contratoElement.innerHTML = `CONTRATO DE PRESTACIÓN DE SERVICIOS<br> ENTRE ${empresa.nombre}, con domicilio en ${empresa.direccion}, en adelante denominado "EL CONTRATANTE", por una parte,y ${aspirante.nombre} ${aspirante.apellido}, con domicilio en ${aspirante.direccion}, en adelante denominado "EL CONTRATISTA", por la otra parte,<br> ACUERDAN LO SIGUIENTE:<br> 1. OBJETO: EL CONTRATISTA se compromete a prestar sus servicios a EL CONTRATANTE, los cuales consistirán en ${item.funciones} y se realizaran en la ubicacion ${item.ubicacion}.<br> 2. DURACIÓN: Este contrato tendrá una duración de ${item.tiempo}, comenzando el ${item.fecha_inicio}.<br> 3. PAGO: Por los servicios prestados, EL CONTRATANTE pagará a EL CONTRATISTA la suma de $ ${aspirante.valor_hora} a pagar en efectivo o transferencia por cada hora laborada.<br> 4. CONFIDENCIALIDAD: EL CONTRATISTA se compromete a mantener en confidencialidad toda la información que reciba de EL CONTRATANTE durante la vigencia de este contrato.<br> 5. TERMINACIÓN: Cualquiera de las partes puede terminar este contrato con un preaviso por escrito de 7 dias.<br> Firmado en ${empresa.ciudad_id} el ${date},<br> Contratante: ${empresa.nombre}    Contratista: ${aspirante.nombre}<br>`;
                             sectionCont.appendChild(contratoElement)                                                      
+
                             let inputACT = document.createElement('button')
                             inputACT.textContent = "Aprobar Contrato"
                             inputACT.id = 'btnInputAC'
@@ -1015,6 +1068,11 @@ function iniciarSession() {
                                     },
                                     body: JSON.stringify(infoSendC)
                                 })
+                                if (!response.ok) {
+                                    alert(`No se logro aprobar el contrato: ${response.status}`);
+                                } else {
+                                    alert('Se ha aprobado el contrato, podra validarlo en la pestaña contratos');
+                                }
 
                             })
                             sectionCont.appendChild(inputACT)

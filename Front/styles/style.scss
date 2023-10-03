@@ -230,7 +230,8 @@ span.principal {
         }
     }
 
-    &-chats,&-contratosl {
+    &-chats,
+    &-contratosl {
         position: absolute;
         top: 145px;
         left: 136px;
@@ -248,10 +249,18 @@ span.principal {
             @include buttons(10px, rgb(131, 131, 136), 10px, 20px 10px 10px 10px, 2px solid rgb(200, 200, 211));
         }
     }
-    &-contrato,&-contrato-p{
+
+    &-contrato,
+    &-contrato-p {
         width: 57%;
         position: absolute;
         top: 140px;
         right: 145px;
+
+        p {
+
+            @include fuentes(16px, 400, black);
+            @include buttons(10px, rgba(173, 173, 173, 0.651), 10px, 20px 10px 10px 10px, 2px solid rgb(200, 200, 211));
+        }
     }
 }
